@@ -79,8 +79,47 @@ function partition(array, start, end) {
   return j
 }
 
+function mergeSortList(list) {
+  if (list.length <= 1) {
+      return list
+  }
+
+  const middle = Math.floor(list.length / 2)
+  let left = list.slice(0, middle)
+  let right = list.slice(middle, list.length)
+
+  left = mergeSortList(left)
+  right = mergeSortList(right)
+  return mergeList(left, right, list)
+}
+
+function mergeList(left, right, list) {
+  let leftIndex = 0
+  let rightIndex = 0
+  let outputIndex = 0
+  while (leftIndex < left.length && rightIndex < right.length) {
+      if (left[leftIndex] < right[rightIndex]) {
+          list[outputIndex++] = left[leftIndex++]
+      }
+      else {
+          list[outputIndex++] = right[rightIndex++]
+      }
+  }
+
+  for (let i = leftIndex; i < left.length; i++) {
+      list[outputIndex++] = left[i]
+  }
+
+  for (let i = rightIndex; i < right.length; i++) {
+      list [outputIndex++] = right[i]
+  }
+  return array
+}
+
+
 module.exports = {
   mergeSort,
   bubbleSort,
-  quickSort
+  quickSort,
+  mergeSortList
 }

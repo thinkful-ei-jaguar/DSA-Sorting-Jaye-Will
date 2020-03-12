@@ -107,6 +107,15 @@ class LinkedList {
     }
     this.insertBefore(newItem, tempNode.value)
   }
+  length() {
+    let count = 0
+    let temp = this.head
+    while( temp != null) {
+      count++
+      temp = temp.next
+    }
+    return count
+  }
 }
 
-module.export = LinkedList
+module.exports = LinkedList

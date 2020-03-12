@@ -1,5 +1,5 @@
-const { quickSort, mergeSort, bubbleSort} = require('./algorithms')
-const { LinkedList } = require('./algorithms')
+const { quickSort, mergeSort, bubbleSort, mergeSortList } = require('./algorithms')
+const LinkedList = require('./LinkedList')
 
 /**
  * 1. Understanding merge sort
@@ -61,18 +61,25 @@ function drill4() {
 Given a Linked List, sort the linked list using merge sort. You will need your linked list class from previous lesson to create the list and use all of its supplemental functions to solve this problem.
  */
 
+function print(list) {
+  let temp = list.head
+  while( temp != null) {
+    console.log(temp.value)
+    temp = temp.next
+  }
+}
+
 function drill5(){
   let link = new LinkedList()
-  link.insert(3)
-  link.insert(8)
-  link.insert(5)
-  link.insert(1)
-  link.insert(5)
-  link.insert(9)
-  link.insert(4)
-
+  link.insertFirst(3)
+  link.insertFirst(8)
+  link.insertFirst(5)
+  link.insertFirst(1)
+  link.insertFirst(5)
+  link.insertFirst(9)
+  link.insertFirst(4)
+  //mergeSortList(link)
+  print(link)
 }
+drill5()
 
-function print(list) {
-  
-}
