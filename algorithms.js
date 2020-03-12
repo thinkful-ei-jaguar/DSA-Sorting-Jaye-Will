@@ -1,3 +1,5 @@
+const LinkedList = require('./LinkedList')
+
 function swap(array, i, j) {
   const tmp = array[i]
   array[i] = array[j]
@@ -79,14 +81,27 @@ function partition(array, start, end) {
   return j
 }
 
+function slice(list, beg, end){
+  let navi = new LinkedList()
+  let temp = list.head
+  for(let i = 0; i < beg; i++) {
+    temp = temp.next
+  }
+  for(let i = beg; i < end; i++) {
+    navi.insertLast(temp)
+    temp = temp.next
+  }
+  return navi
+}
+
 function mergeSortList(list) {
-  if (list.length <= 1) {
+  if (list.length() <= 1) {
       return list
   }
 
-  const middle = Math.floor(list.length / 2)
-  let left = list.slice(0, middle)
-  let right = list.slice(middle, list.length)
+  const middle = Math.floor(list.length() / 2)
+  let left = slice(list, 0, middle)
+  let right = slice(list, middle, list.length())
 
   left = mergeSortList(left)
   right = mergeSortList(right)
@@ -94,26 +109,32 @@ function mergeSortList(list) {
 }
 
 function mergeList(left, right, list) {
-  let leftIndex = 0
-  let rightIndex = 0
-  let outputIndex = 0
-  while (leftIndex < left.length && rightIndex < right.length) {
-      if (left[leftIndex] < right[rightIndex]) {
-          list[outputIndex++] = left[leftIndex++]
-      }
-      else {
-          list[outputIndex++] = right[rightIndex++]
-      }
+  let leftIndex = left.head
+  let rightIndex = right.head
+  let counter = 0
+
+  while(leftIndex !== null && rightIndex !== null){
+    if(leftIndex < rightIndex) {
+      list.insertAt(leftIndex, counter++)
+      leftIndex = leftIndex.next
+    }
+    else{
+      list.insertAt(rightIndex, counter++)
+      rightIndex = rightIndex.next
+    }
   }
 
-  for (let i = leftIndex; i < left.length; i++) {
-      list[outputIndex++] = left[i]
+  while(leftIndex !== null) {
+    list.insertAt(leftIndex, counter++)
+    leftIndex = leftIndex.next
   }
 
-  for (let i = rightIndex; i < right.length; i++) {
-      list [outputIndex++] = right[i]
+  while(rightIndex !== null) {
+    list.insertAt(rightIndex, counter++)
+    rightIndex = rightIndex.next
   }
-  return array
+
+  return list
 }
 
 

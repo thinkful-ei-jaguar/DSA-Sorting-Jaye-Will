@@ -78,8 +78,8 @@ function drill5(){
   link.insertFirst(5)
   link.insertFirst(9)
   link.insertFirst(4)
-  //mergeSortList(link)
+  mergeSortList(link)
   print(link)
 }
-drill5()
+//drill5()
 
