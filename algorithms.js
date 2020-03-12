@@ -79,7 +79,7 @@ function partition(array, start, end) {
   return j
 }
 
-module.export = {
+module.exports = {
   mergeSort,
   bubbleSort,
   quickSort
